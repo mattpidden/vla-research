@@ -15,6 +15,7 @@ sbatch train.sbatch
 Inference Server
 ```bash
 ssh mdp25@devi.doc.ic.ac.uk
+ssh -L 8080:localhost:8080 mdp25@devi.doc.ic.ac.uk
 
 export HF_HOME=/vol/dissolve/matt/hf_cache
 export TRANSFORMERS_CACHE=/vol/dissolve/matt/hf_cache
