@@ -22,10 +22,13 @@ ssh -L 8080:localhost:8080 mdp25@devi.doc.ic.ac.uk
 export HF_HOME=/vol/dissolve/matt/hf_cache
 export TRANSFORMERS_CACHE=/vol/dissolve/matt/hf_cache
 export HF_DATASETS_CACHE=/vol/dissolve/matt/hf_cache
+export PIP_CACHE_DIR=/vol/dissolve/matt/pip_cache
 
 export PATH="$HOME/miniconda3/bin:$PATH"
 source ~/.bashrc
 conda activate /vol/dissolve/matt/envs/lerobot
+conda config --add pkgs_dirs /vol/dissolve/matt/conda_pkgs
+conda config --add envs_dirs /vol/dissolve/matt/envs
 
 python -m lerobot.async_inference.policy_server      --host=127.0.0.1      --port=8080
 ```
