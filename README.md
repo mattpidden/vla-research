@@ -10,6 +10,8 @@ export HF_DATASETS_CACHE=/vol/dissolve/matt/hf_cache
 
 nano train.sbatch
 sbatch train.sbatch
+tail -f outputfile
+watch -n 10 squeue --me
 ```
 
 Inference Server
