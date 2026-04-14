@@ -21,6 +21,8 @@ export HF_HOME=/vol/dissolve/matt/hf_cache
 export TRANSFORMERS_CACHE=/vol/dissolve/matt/hf_cache
 export HF_DATASETS_CACHE=/vol/dissolve/matt/hf_cache
 
+export PATH="$HOME/miniconda3/bin:$PATH"
+source ~/.bashrc
 conda activate /vol/dissolve/matt/envs/lerobot
 
 python -m lerobot.async_inference.policy_server      --host=127.0.0.1      --port=8080
