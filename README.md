@@ -24,6 +24,10 @@ export TRANSFORMERS_CACHE=/vol/dissolve/matt/hf_cache
 export HF_DATASETS_CACHE=/vol/dissolve/matt/hf_cache
 export PIP_CACHE_DIR=/vol/dissolve/matt/pip_cache
 
+export TORCHINDUCTOR_DISABLE=1
+export TORCH_COMPILE_DISABLE=1
+export CUDA_LAUNCH_BLOCKING=1
+
 export PATH="$HOME/miniconda3/bin:$PATH"
 source ~/.bashrc
 conda activate /vol/dissolve/matt/envs/lerobot
