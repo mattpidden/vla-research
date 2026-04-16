@@ -41,9 +41,11 @@ Local Client
 ```bash
 lerobot-port-find
 
+export OPENCV_VIDEOIO_PRIORITY_V4L2=1
+
 lerobot-teleoperate     --robot.type=so101_follower     --robot.port=/dev/ttyACM0  --robot.id=blue_follower_arm     --teleop.type=so101_leader     --teleop.port=/dev/ttyACM1 --teleop.id=orange_leader_arm   --robot.cameras="{ camera1: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}, camera2: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30}}" --display_data=true
 
-lerobot-record --robot.type=so101_follower --robot.port=/dev/ttyACM0 --robot.id=blue_follower_arm --robot.cameras="{wrist: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}, world: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30}}" --teleop.type=so101_leader --teleop.port=/dev/ttyACM1 --teleop.id=orange_leader_arm --display_data=true --dataset.repo_id=mattpidden/multicolour_block_pick_place --dataset.num_episodes=50 --dataset.single_task="Pick up the red block and carefully place it in the black bin" --dataset.streaming_encoding=true --dataset.encoder_threads=4 --dataset.fps=15
+lerobot-record --robot.type=so101_follower --robot.port=/dev/ttyACM0 --robot.id=blue_follower_arm --robot.cameras="{wrist: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}, world: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30}}" --teleop.type=so101_leader --teleop.port=/dev/ttyACM1 --teleop.id=orange_leader_arm --display_data=true --dataset.repo_id=mattpidden/multicolour_block_pick_place --dataset.num_episodes=50 --dataset.single_task="Pick up the red block and carefully place it in the black bin" --dataset.streaming_encoding=true --dataset.encoder_threads=4 --dataset.fps=30
 
 # use these flags if adding more episodes to a dataset that already exists:
 --resume=true --dataset.root=./data/smol-vla-test-dataset
