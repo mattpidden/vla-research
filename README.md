@@ -7,6 +7,8 @@ ssh mdp25@gpucluster3.doc.ic.ac.uk
 export HF_HOME=/vol/dissolve/matt/hf_cache
 export TRANSFORMERS_CACHE=/vol/dissolve/matt/hf_cache
 export HF_DATASETS_CACHE=/vol/dissolve/matt/hf_cache
+export PIP_CACHE_DIR="/vol/dissolve/mdp25/pip_tmp/cache"
+export TMPDIR="/vol/dissolve/mdp25/pip_tmp/temp"
 
 nano train.sbatch
 sbatch train.sbatch
