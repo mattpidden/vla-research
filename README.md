@@ -9,6 +9,11 @@ export TRANSFORMERS_CACHE=/vol/dissolve/matt/hf_cache
 export HF_DATASETS_CACHE=/vol/dissolve/matt/hf_cache
 export PIP_CACHE_DIR="/vol/dissolve/mdp25/pip_tmp/cache"
 export TMPDIR="/vol/dissolve/mdp25/pip_tmp/temp"
+export TMPDIR=/vol/dissolve/matt/tmp
+export TEMP=/vol/dissolve/matt/tmp
+export TMP=/vol/dissolve/matt/tmp
+export PIP_CACHE_DIR=/vol/dissolve/matt/pip_cache
+export XDG_CACHE_HOME=/vol/dissolve/matt/.cache
 
 nano train.sbatch
 sbatch train.sbatch
