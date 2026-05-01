@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH --partition=a100
+#SBATCH --partition=a40
 #SBATCH --gres=gpu:1
 #SBATCH --mem=24G
 #SBATCH --cpus-per-task=4
-#SBATCH --time=12:00:00
+#SBATCH --time=16:00:00
 #SBATCH --output=train_%j.out
 
 echo "Job ID: $SLURM_JOB_ID"
@@ -28,14 +28,4 @@ export TRANSFORMERS_CACHE=/vol/dissolve/matt/hf_cache
 export HF_DATASETS_CACHE=/vol/dissolve/matt/hf_cache
 hf auth login
 
-lerobot-train \
-  --dataset.repo_id=mattpidden/smol-vla-test-dataset \
-  --policy.path=lerobot/smolvla_base \
-  --output_dir=/vol/bitbucket/mdp25/outputs/smolvla2 \
-  --job_name=smolvla_training \
-  --batch_size=64 \
-  --steps 40000 \
-  --save_freq 1000 \
-  --policy.device=cuda \
-  --policy.repo_id=mattpidden/smolvla_apple_policy2 \
-  --rename_map='{"observation.images.claw": "observation.images.camera1", "observation.images.world": "observation.images.camera2"}'
+lerobot-train    --dataset.repo_id=justintiensmith/red_block_precision-multicolour_block_pick_place   --policy.path=lerobot/smolvla_base   --output_dir=/vol/bitbucket/mdp25/outputs/smolvlablockpolicy68   --job_name=smolvla_training   --batch_size=32   --steps 30000   --save_freq 5000   --policy.device=cuda   --policy.repo_id=mattpidden/smolvla_30k_precision-multicolour_block_pick_place   --rename_map='{"observation.images.wrist": "observation.images.camera1", "observation.images.world": "observation.images.camera2"}'
