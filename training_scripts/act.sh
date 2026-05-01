@@ -20,24 +20,21 @@ echo "-------------------------"
 export PYTHONUNBUFFERED=1
 export CUDA_VISIBLE_DEVICES=0
 
-# activate virtual environment
-# source /vol/bitbucket/mdp25/lerobot310/bin/activate
-#which conda
 export PATH="$HOME/miniconda3/bin:$PATH"
 source $HOME/miniconda3/etc/profile.d/conda.sh
 conda activate /vol/dissolve/matt/envs/lerobot
 
 export HF_HOME=/vol/dissolve/matt/hf_cache
-export TRANSFORMERS_CACHE=/vol/dissolve/matt/hf_cache
 export HF_DATASETS_CACHE=/vol/dissolve/matt/hf_cache
 hf auth login
 
 lerobot-train \
-  --dataset.repo_id=justintiensmith/multicolour_block_pick_place \
+  --dataset.repo_id=justintiensmith/red_block_precision-multicolour_block_pick_place \
   --policy.type=act \
-  --output_dir=/vol/dissolve/matt/outputs/actblockpolicy \
-  --job_name=act \
-  --steps=10000 \
-  --save_freq=1000 \
+  --output_dir=/vol/dissolve/matt/outputs/actblockpolicy18 \
+  --job_name=acttraining \
+  --steps=100000 \
+  --batch_size=32 \
+  --save_freq=10000 \
   --policy.device=cuda \
-  --policy.repo_id=mattpidden/act_block_policy
+  --policy.repo_id=mattpidden/act_100k_precise-multicolour_block_pick_place
