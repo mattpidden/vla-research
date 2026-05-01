@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --partition=a100
+#SBATCH --partition=t4
 #SBATCH --gres=gpu:1
 #SBATCH --mem=64G
 #SBATCH --cpus-per-task=4
-#SBATCH --time=24:00:00
-#SBATCH --output=train_%j.out
+#SBATCH --time=12:00:00
+#SBATCH --output=train_%j_pi05.out
 
 echo "Job ID: $SLURM_JOB_ID"
 echo "Running on node: $(hostname)"
@@ -33,19 +33,19 @@ export HF_DATASETS_CACHE=/vol/dissolve/matt/hf_cache
 hf auth login
 
 lerobot-train \
-  --dataset.repo_id=mattpidden/smol-vla-test-dataset \
+  --dataset.repo_id=justintiensmith/red_block_precision-multicolour_block_pick_place \
   --policy.type=pi05 \
-  --output_dir=/vol/bitbucket/mdp25/outputs/pi05 \
+  --output_dir=/vol/bitbucket/mdp25/outputs/pi05_5k_precision-multicolour_block_pick_place \
   --job_name=pi05_training \
   --policy.pretrained_path=lerobot/pi05_base \
   --policy.dtype=bfloat16 \
   --policy.gradient_checkpointing=true \
   --policy.freeze_vision_encoder=false \
-  --policy.train_expert_only=true \
-  --steps=40000 \
-  --batch_size=16 \
+  --policy.train_expert_only=false \
+  --steps=5000 \
+  --batch_size=32 \
   --save_freq 1000 \
   --policy.device=cuda \
-  --policy.repo_id=mattpidden/pi05_apple_policy \
-  --policy.compile_model=true \
+  --policy.repo_id=mattpidden/pi05_5k_precision-multicolour_block_pick_place \
+  --policy.compile_model=false \
   --policy.normalization_mapping='{"ACTION": "MEAN_STD", "STATE": "MEAN_STD", "VISUAL": "IDENTITY"}'
